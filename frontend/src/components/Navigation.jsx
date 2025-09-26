@@ -1,11 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  HomeIcon,
-  MapIcon,
-  ChartBarIcon,
-  PlusCircleIcon,
-} from '@heroicons/react/24/outline';
 
 const Navigation = () => {
   const location = useLocation();
@@ -14,81 +8,68 @@ const Navigation = () => {
     {
       name: 'Accueil',
       href: '/',
-      icon: HomeIcon,
+      icon: '🏠'
     },
     {
       name: 'Ajouter',
       href: '/add',
-      icon: PlusCircleIcon,
+      icon: '➕'
     },
     {
       name: 'Carte',
       href: '/map',
-      icon: MapIcon,
+      icon: '🗺️'
     },
     {
       name: 'Dashboard',
       href: '/dashboard',
-      icon: ChartBarIcon,
-    },
+      icon: '📊'
+    }
   ];
 
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0">
-              <h1 className="text-xl font-bold text-blue-600">
-                Deeps Roller Maraude
-              </h1>
+    <nav className="navigation">
+      {/* Navigation desktop */}
+      <div className="nav-desktop">
+        <div className="container">
+          <div className="nav-content">
+            <Link to="/" className="nav-logo">
+              <h1>Deeps Roller Maraude</h1>
             </Link>
-          </div>
-
-          {/* Navigation desktop */}
-          <div className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => {
-              const isActive = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                  }`}
-                >
-                  <item.icon className="w-5 h-5 mr-2" />
-                  {item.name}
-                </Link>
-              );
-            })}
+            <div className="nav-links">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`nav-link ${isActive ? 'active' : ''}`}
+                  >
+                    <span className="nav-icon">{item.icon}</span>
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Navigation mobile */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
-        <div className="grid grid-cols-4 gap-1">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`flex flex-col items-center py-2 px-1 transition-colors ${
-                  isActive
-                    ? 'text-blue-600'
-                    : 'text-gray-500'
-                }`}
-              >
-                <item.icon className="w-6 h-6" />
-                <span className="text-xs mt-1">{item.name}</span>
-              </Link>
-            );
-          })}
-        </div>
+      <div className="nav-mobile">
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.href;
+          return (
+            <Link
+              key={item.name + '-mobile'}
+              to={item.href}
+              className={`nav-mobile-item ${isActive ? 'active' : ''}`}
+            >
+              <span className="nav-mobile-icon">{item.icon}</span>
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
       </div>
     </nav>
   );
