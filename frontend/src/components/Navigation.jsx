@@ -34,55 +34,50 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="nav">
-      <div className="container">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0">
-              <h1 className="text-lg font-bold text-blue-600">
-                Deeps Roller Maraude
-              </h1>
+    <>
+      {/* Navigation simple en haut pour desktop */}
+      <nav className="nav-desktop">
+        <div className="container">
+          <div className="nav-content">
+            <Link to="/" className="nav-logo">
+              <h1>Deeps Roller</h1>
             </Link>
-          </div>
-
-          {/* Navigation desktop */}
-          <div className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => {
-              const isActive = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`nav-link ${isActive ? 'active' : ''}`}
-                >
-                  <item.icon className="w-4 h-4" />
-                  {item.name}
-                </Link>
-              );
-            })}
+            <div className="nav-links">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={`nav-link ${isActive ? 'active' : ''}`}
+                  >
+                    <item.icon />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Navigation mobile */}
-      <div className="mobile-nav md:hidden">
-        <div className="mobile-nav-grid">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`mobile-nav-item ${isActive ? 'active' : ''}`}
-              >
-                <item.icon className="w-5 h-5" />
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
-        </div>
+      {/* Navigation mobile en bas */}
+      <div className="nav-mobile">
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`nav-mobile-item ${isActive ? 'active' : ''}`}
+            >
+              <item.icon />
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
       </div>
-    </nav>
+    </>
   );
 };
 

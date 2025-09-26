@@ -389,24 +389,48 @@ body {
   color: #6b7280;
 }
 
-/* Navigation compacte */
-nav.nav {
+/* Navigation Desktop - Simple et compacte */
+.nav-desktop {
   background: white;
   border-bottom: 1px solid #e5e7eb;
-  padding: 12px 0;
+  padding: 8px 0;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 48px;
+}
+
+.nav-logo h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 6px;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #6b7280;
   transition: all 0.2s;
+}
+
+.nav-link svg {
+  width: 16px;
+  height: 16px;
 }
 
 .nav-link:hover {
@@ -419,36 +443,64 @@ nav.nav {
   color: #2563eb;
 }
 
-/* Navigation mobile compacte */
-.mobile-nav {
+/* Navigation Mobile - En bas seulement sur mobile */
+.nav-mobile {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background: white;
   border-top: 1px solid #e5e7eb;
-  padding: 8px 0;
+  padding: 6px;
   z-index: 50;
-}
-
-.mobile-nav-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
 }
 
-.mobile-nav-item {
+.nav-mobile-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 8px;
+  gap: 2px;
+  padding: 6px 4px;
   text-decoration: none;
   color: #6b7280;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 4px;
 }
 
-.mobile-nav-item.active {
+.nav-mobile-item svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-mobile-item.active {
   color: #2563eb;
+  background-color: #eff6ff;
+}
+
+/* Responsive - Masquer selon l'écran */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+  .nav-mobile {
+    display: grid;
+  }
+  .pb-20 {
+    padding-bottom: 70px;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-desktop {
+    display: block;
+  }
+  .nav-mobile {
+    display: none;
+  }
 }
 
 /* Carte Leaflet normale */
