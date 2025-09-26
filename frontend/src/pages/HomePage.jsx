@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  PlusIcon,
-  MapIcon,
-  UserGroupIcon,
-} from '@heroicons/react/24/outline';
 import { personService } from '../services/api';
 
 const HomePage = () => {
@@ -41,20 +36,18 @@ const HomePage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Chargement des données...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-md p-4">
-        <div className="text-red-800">{error}</div>
-        <button 
-          onClick={fetchPersons}
-          className="mt-2 text-red-600 hover:text-red-800 underline"
-        >
+      <div className="error-container">
+        <div className="error-message">{error}</div>
+        <button onClick={fetchPersons} className="retry-button">
           Réessayer
         </button>
       </div>
@@ -62,85 +55,137 @@ const HomePage = () => {
   }
 
   return (
-    <div className="container space-y-6 pb-20 md:pb-6">
-      {/* Bienvenue simple */}
+    <div className="home-page">
+      {/* En-tête avec compteur principal */}
       <div className="welcome-section">
-        <h1 className="welcome-title">Deeps Roller Maraude</h1>
+        <h1 className="welcome-title">Bienvenue sur Deeps Roller Maraude</h1>
         <p className="welcome-subtitle">
-          Aide aux personnes en situation de rue
+          Application de suivi pour l'aide aux personnes en situation de rue
         </p>
         
         <div className="main-counter">
-          <div className="main-counter-number">{stats.total}</div>
-          <div className="main-counter-label">Personnes rencontrées</div>
+          <div className="counter-content">
+            <div>
+              <p className="counter-label">Nombre total de personnes rencontrées</p>
+              <p className="main-counter-number">{stats.total}</p>
+            </div>
+            <div className="counter-icon">👥</div>
+          </div>
         </div>
       </div>
 
-      {/* Statistiques simples */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Statistiques rapides */}
+      <div className="stats-grid">
         <div className="stat-card">
-          <div className="stat-number">{stats.adults}</div>
-          <div className="stat-label">Adultes</div>
+          <div className="stat-content">
+            <div className="stat-icon blue-icon">👨</div>
+            <div>
+              <p className="stat-label">Adultes</p>
+              <p className="stat-number">{stats.adults}</p>
+            </div>
+          </div>
         </div>
 
         <div className="stat-card">
-          <div className="stat-number">{stats.children}</div>
-          <div className="stat-label">Enfants</div>
+          <div className="stat-content">
+            <div className="stat-icon yellow-icon">👶</div>
+            <div>
+              <p className="stat-label">Enfants</p>
+              <p className="stat-number">{stats.children}</p>
+            </div>
+          </div>
         </div>
 
         <div className="stat-card">
-          <div className="stat-number">{stats.visited}</div>
-          <div className="stat-label">Visités</div>
+          <div className="stat-content">
+            <div className="stat-icon green-icon">✅</div>
+            <div>
+              <p className="stat-label">Lieux visités</p>
+              <p className="stat-number">{stats.visited}</p>
+            </div>
+          </div>
         </div>
 
         <div className="stat-card">
-          <div className="stat-number">{stats.total - stats.visited}</div>
-          <div className="stat-label">À visiter</div>
+          <div className="stat-content">
+            <div className="stat-icon red-icon">⏰</div>
+            <div>
+              <p className="stat-label">À visiter</p>
+              <p className="stat-number">{stats.total - stats.visited}</p>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Actions rapides */}
       <div className="quick-actions">
-        <Link to="/add" className="quick-action">
-          <div className="quick-action-icon">
-            <PlusIcon className="w-5 h-5" />
+        <Link to="/add" className="quick-action primary-action">
+          <div>
+            <h3>Ajouter une personne</h3>
+            <p>Enregistrer une nouvelle rencontre</p>
           </div>
-          <div className="quick-action-text">
-            <h3>Ajouter</h3>
-            <p>Nouvelle personne</p>
-          </div>
+          <span className="action-icon">➕</span>
         </Link>
 
-        <Link to="/map" className="quick-action">
-          <div className="quick-action-icon">
-            <MapIcon className="w-5 h-5" />
+        <Link to="/map" className="quick-action secondary-action">
+          <div>
+            <h3>Voir la carte</h3>
+            <p>Localiser toutes les personnes</p>
           </div>
-          <div className="quick-action-text">
-            <h3>Carte</h3>
-            <p>Voir les lieux</p>
-          </div>
+          <span className="action-icon">🗺️</span>
         </Link>
       </div>
 
-
+      {/* Rencontres récentes */}
+      {stats.recentEncounters.length > 0 && (
+        <div className="recent-encounters">
+          <div className="section-header">
+            <h2>Rencontres récentes</h2>
+          </div>
+          <div className="encounters-list">
+            {stats.recentEncounters.map((person) => (
+              <div key={person.id} className="encounter-item">
+                <div className="encounter-content">
+                  <div>
+                    <p className="person-id">Personne #{person.id}</p>
+                    <p className="person-description">{person.description}</p>
+                    <div className="person-details">
+                      <span className="person-info">
+                        {person.gender === 'homme' ? 'Homme' : 
+                         person.gender === 'femme' ? 'Femme' : 
+                         person.gender === 'autre' ? 'Autre' : 'Non spécifié'} • 
+                        {person.ageCategory === 'adulte' ? ' Adulte' : ' Enfant'}
+                      </span>
+                      <span className="encounter-date">
+                        {new Date(person.dateEncounter).toLocaleDateString('fr-FR')}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="status-icon">
+                    {person.locationVisited ? '✅' : '⏰'}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="section-footer">
+            <Link to="/dashboard" className="view-all-link">
+              Voir toutes les rencontres →
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* Message si aucune donnée */}
       {stats.total === 0 && (
-        <div className="text-center py-12">
-          <UserGroupIcon className="mx-auto h-12 w-12 text-gray-400" />
-          <h3 className="mt-2 text-sm font-medium text-gray-900">Aucune personne enregistrée</h3>
-          <p className="mt-1 text-sm text-gray-500">
-            Commencez par ajouter votre première rencontre.
-          </p>
-          <div className="mt-6">
-            <Link
-              to="/add"
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
-            >
-              <PlusIcon className="w-5 h-5 mr-2" />
-              Ajouter une personne
-            </Link>
-          </div>
+        <div className="empty-state">
+          <div className="empty-icon">👥</div>
+          <h3>Aucune personne enregistrée</h3>
+          <p>Commencez par ajouter votre première rencontre.</p>
+          <Link to="/add" className="add-first-button">
+            <span>➕</span>
+            Ajouter une personne
+          </Link>
         </div>
       )}
     </div>

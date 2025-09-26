@@ -7,18 +7,18 @@ import MapPage from './pages/MapPage';
 import DashboardPage from './pages/DashboardPage';
 import './App.css';
 
-function App() {
+function App () {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="app-container">
         <Navigation />
-        
-        <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+
+        <main className="main-content">
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/add" element={<AddPersonPage />} />
-            <Route path="/map" element={<MapPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/" element={ <HomePage /> } />
+            <Route path="/add" element={ <AddPersonPage /> } />
+            <Route path="/map" element={ <MapPage /> } />
+            <Route path="/dashboard" element={ <DashboardPage /> } />
           </Routes>
         </main>
       </div>

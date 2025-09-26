@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  PencilIcon,
-  TrashIcon,
-  EyeIcon,
-  EyeSlashIcon,
-  PlusIcon,
-} from '@heroicons/react/24/outline';
-import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
@@ -34,8 +27,6 @@ const DashboardPage = () => {
   const [persons, setPersons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // eslint-disable-next-line no-unused-vars
-  const [editingPerson, setEditingPerson] = useState(null);
 
   useEffect(() => {
     fetchPersons();
@@ -180,19 +171,19 @@ const DashboardPage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="dashboard-loading">
+        <div className="dashboard-spinner"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-md p-4">
-        <div className="text-red-800">{error}</div>
+      <div className="dashboard-error">
+        <div className="dashboard-error-message">{error}</div>
         <button 
           onClick={fetchPersons}
-          className="mt-2 text-red-600 hover:text-red-800 underline"
+          className="dashboard-retry-btn"
         >
           Réessayer
         </button>
@@ -201,22 +192,21 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="space-y-6 pb-20 md:pb-6">
+    <div className="dashboard-container">
       {/* En-tête */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="mt-1 text-sm text-gray-500">
+      <div className="dashboard-header">
+        <div className="dashboard-header-text">
+          <h1 className="dashboard-title">Dashboard</h1>
+          <p className="dashboard-subtitle">
             Gestion et statistiques des rencontres
           </p>
         </div>
-        <div className="mt-4 sm:mt-0">
+        <div className="dashboard-header-actions">
           <Link
             to="/add"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700"
+            className="dashboard-add-btn"
           >
-            <PlusIcon className="w-5 h-5 mr-2" />
-            Ajouter une personne
+            ➕ Ajouter une personne
           </Link>
         </div>
       </div>
@@ -357,30 +347,28 @@ const DashboardPage = () => {
                       >
                         {person.locationVisited ? (
                           <>
-                            <EyeIcon className="w-3 h-3 mr-1" />
-                            Visité
+                            👁️ Visité
                           </>
                         ) : (
                           <>
-                            <EyeSlashIcon className="w-3 h-3 mr-1" />
-                            Non visité
+                            🚫 Non visité
                           </>
                         )}
                       </button>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
-                        <button
-                          onClick={() => setEditingPerson(person)}
-                          className="text-primary-600 hover:text-primary-900"
+                        <Link
+                          to={`/add?edit=${person.id}`}
+                          className="dashboard-edit-btn"
                         >
-                          <PencilIcon className="w-4 h-4" />
-                        </button>
+                          ✏️
+                        </Link>
                         <button
                           onClick={() => handleDelete(person.id)}
-                          className="text-red-600 hover:text-red-900"
+                          className="dashboard-delete-btn"
                         >
-                          <TrashIcon className="w-4 h-4" />
+                          🗑️
                         </button>
                       </div>
                     </td>
