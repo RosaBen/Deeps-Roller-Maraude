@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { XMarkIcon, DocumentIcon, CloudArrowUpIcon } from '@heroicons/react/24/outline';
 
 const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', label }) => {
   const [dragActive, setDragActive] = useState(false);
@@ -89,14 +90,14 @@ const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', l
                 onClick={removeFile}
                 className="remove-file-button image-remove"
               >
-                ❌
+                <XMarkIcon style={{ width: '16px', height: '16px' }} />
               </button>
             </div>
           ) : (
             // Aperçu fichier non-image
             <div className="file-preview-container">
               <div className="file-info">
-                <span className="file-icon">📄</span>
+                <DocumentIcon className="file-icon" />
                 <span className="file-name">
                   {selectedFile.name}
                 </span>
@@ -105,7 +106,7 @@ const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', l
                 onClick={removeFile}
                 className="remove-file-button"
               >
-                ❌
+                <XMarkIcon style={{ width: '16px', height: '16px' }} />
               </button>
             </div>
           )}
@@ -125,14 +126,12 @@ const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', l
           onClick={onButtonClick}
         >
           <div className="upload-content">
-            <div className="upload-icon">
-              ☁️⬆️
-            </div>
+            <CloudArrowUpIcon className="upload-icon" />
             <div className="upload-text">
               <span className="upload-action">
                 Cliquez pour sélectionner
               </span>{' '}
-              ou glissez-déposez un fichier
+              ou glissez-déposez
             </div>
             {label && (
               <p className="upload-label">{label}</p>

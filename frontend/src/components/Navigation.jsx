@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { HomeIcon, PlusIcon, MapIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 
 const Navigation = () => {
   const location = useLocation();
@@ -8,29 +9,29 @@ const Navigation = () => {
     {
       name: 'Accueil',
       href: '/',
-      icon: '🏠'
+      icon: HomeIcon
     },
     {
       name: 'Ajouter',
       href: '/add',
-      icon: '➕'
+      icon: PlusIcon
     },
     {
       name: 'Carte',
       href: '/map',
-      icon: '🗺️'
+      icon: MapIcon
     },
     {
       name: 'Dashboard',
       href: '/dashboard',
-      icon: '📊'
+      icon: ChartBarIcon
     }
   ];
 
   return (
-    <nav className="navigation">
+    <>
       {/* Navigation desktop */}
-      <div className="nav-desktop">
+      <nav className="nav-desktop">
         <div className="container">
           <div className="nav-content">
             <Link to="/" className="nav-logo">
@@ -39,13 +40,14 @@ const Navigation = () => {
             <div className="nav-links">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
+                const IconComponent = item.icon;
                 return (
                   <Link
                     key={item.name}
                     to={item.href}
                     className={`nav-link ${isActive ? 'active' : ''}`}
                   >
-                    <span className="nav-icon">{item.icon}</span>
+                    <IconComponent className="nav-icon" />
                     <span>{item.name}</span>
                   </Link>
                 );
@@ -53,25 +55,26 @@ const Navigation = () => {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
 
       {/* Navigation mobile */}
       <div className="nav-mobile">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href;
+          const IconComponent = item.icon;
           return (
             <Link
               key={item.name + '-mobile'}
               to={item.href}
               className={`nav-mobile-item ${isActive ? 'active' : ''}`}
             >
-              <span className="nav-mobile-icon">{item.icon}</span>
+              <IconComponent className="nav-mobile-icon" />
               <span>{item.name}</span>
             </Link>
           );
         })}
       </div>
-    </nav>
+    </>
   );
 };
 
