@@ -1,0 +1,53 @@
+{
+  "short_name": "Deeps Roller",
+  "name": "Deeps Roller Maraude - Aide aux SDF",
+  "description": "Application PWA pour répertorier et aider les personnes en situation de rue à Paris",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "categories": ["social", "utilities"],
+  "screenshots": [
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ajouter une personne",
+      "short_name": "Ajouter",
+      "description": "Ajouter une nouvelle personne rencontrée",
+      "url": "/add",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Voir la carte",
+      "short_name": "Carte",
+      "description": "Voir toutes les personnes sur la carte",
+      "url": "/map",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ]
+}
