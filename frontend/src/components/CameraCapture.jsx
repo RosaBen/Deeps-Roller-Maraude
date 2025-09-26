@@ -1,11 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
 import Webcam from 'react-webcam';
-import {
-  CameraIcon,
-  XMarkIcon,
-  ArrowPathIcon,
-  CheckIcon,
-} from '@heroicons/react/24/outline';
 
 const CameraCapture = ({ onCapture, onClose }) => {
   const webcamRef = useRef(null);
@@ -44,19 +38,19 @@ const CameraCapture = ({ onCapture, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-4 max-w-lg w-full mx-4">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Prendre une photo</h3>
+    <div className="camera-modal-overlay">
+      <div className="camera-modal">
+        <div className="camera-header">
+          <h3 className="camera-title">Prendre une photo</h3>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600"
+            className="camera-close-btn"
           >
-            <XMarkIcon className="w-6 h-6" />
+            ❌
           </button>
         </div>
 
-        <div className="relative">
+        <div className="camera-content">
           {!capturedImage ? (
             <>
               <Webcam
@@ -64,54 +58,52 @@ const CameraCapture = ({ onCapture, onClose }) => {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
-                className="w-full rounded-lg"
+                className="camera-video"
               />
               
               {/* Contrôles caméra */}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
+              <div className="camera-controls-overlay">
                 <button
                   onClick={switchCamera}
-                  className="bg-gray-600 hover:bg-gray-700 text-white p-3 rounded-full"
+                  className="camera-control-btn camera-switch-btn"
                 >
-                  <ArrowPathIcon className="w-6 h-6" />
+                  🔄
                 </button>
                 
                 <button
                   onClick={capture}
-                  className="bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full"
+                  className="camera-control-btn camera-capture-btn"
                 >
-                  <CameraIcon className="w-8 h-8" />
+                  📷
                 </button>
               </div>
             </>
           ) : (
             <>
-              <img src={capturedImage} alt="Captured" className="w-full rounded-lg" />
+              <img src={capturedImage} alt="Captured" className="camera-preview" />
               
               {/* Contrôles après capture */}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-4">
+              <div className="camera-controls-overlay">
                 <button
                   onClick={retake}
-                  className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg flex items-center"
+                  className="camera-action-btn camera-retake-btn"
                 >
-                  <ArrowPathIcon className="w-5 h-5 mr-2" />
-                  Reprendre
+                  🔄 Reprendre
                 </button>
                 
                 <button
                   onClick={confirmCapture}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center"
+                  className="camera-action-btn camera-confirm-btn"
                 >
-                  <CheckIcon className="w-5 h-5 mr-2" />
-                  Confirmer
+                  ✅ Confirmer
                 </button>
               </div>
             </>
           )}
         </div>
 
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">
+        <div className="camera-help">
+          <p className="camera-help-text">
             {!capturedImage 
               ? "Positionnez la caméra et appuyez sur le bouton pour prendre une photo"
               : "Êtes-vous satisfait de cette photo ?"

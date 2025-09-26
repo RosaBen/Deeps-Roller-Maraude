@@ -22,27 +22,26 @@ const unvisitedIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-// Icône personnalisée pour les personnes déjà visitées
+// Icône personnalisée pour les personnes visitées (verte)
 const visitedIcon = new L.Icon({
-  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCAyNSA0MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjUgMEMxOS40MDM2IDAgMjUgNS41OTY0NCAyNSAxMi41QzI1IDE5LjQwMzYgMTkuNDAzNiAyNSAxMi41IDI1QzUuNTk2NDQgMjUgMCAxOS40MDM2IDAgMTIuNUMwIDUuNTk2NDQgNS41OTY0NCAwIDEyLjUgMFoiIGZpbGw9IiMxMEI5ODEiLz4KPGV0aGQgZD0iTTEyLjUgNDFMMCA0MUwxMi41IDI1TDI1IDQxSDE2LjVIMTIuNVoiIGZpbGw9IiMxMEI5ODEiLz4KPHN2ZyBjbGFzcz0idy02IGgtNiB0ZXh0LXdoaXRlIiBmaWxsPSJjdXJyZW50Q29sb3IiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Im0xNi43MDcgNS4yOTMgYSAxIDEgMCAwIDEgMCAxLjQxNGwtOCA4YTEgMSAwIDAgMS0xLjQxNCAwbC00LTRhMSAxIDAgMSAxIDEuNDE0LTEuNDE0TDggMTIuNTg2bDcuMjkzLTcuMjkzYTEgMSAwIDAgMSAxLjQxNCAweiIgY2xpcC1ydWxlPSJldmVub2RkIiAvPgo8L3N2Zz4KPC9zdmc+',
+  iconUrl: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iNDEiIHZpZXdCb3g9IjAgMCAyNSA0MSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjUgMEMxOS40MDM2IDBDMJV2LjU5NjQgNS41OTY0IDI1IDEyLjVTMTkuNDAzNiAyNSAxMi41IDI1UzAgMTkuNDAzNiAwIDEyLjVTNS41OTY0IDAgMTIuNSAwWiIgZmlsbD0iIzEwQjk4MSIvPgo8L3N2Zz4K',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
+  shadowSize: [41, 41]
 });
 
 const InteractiveMap = ({
-  persons,
-  onMarkerClick,
-  center = [48.8566, 2.3522], // Paris par défaut
-  zoom = 12,
+  persons = [],
+  center = [48.8566, 2.3522],
+  zoom = 13,
+  onMarkerClick
 }) => {
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
+      year: 'numeric'
     });
   };
 
@@ -57,16 +56,19 @@ const InteractiveMap = ({
   };
 
   const getAgeCategoryLabel = (ageCategory) => {
-    return ageCategory === 'adulte' ? 'Adulte' : 'Enfant';
+    const labels = {
+      'adulte': 'Adulte',
+      'enfant': 'Enfant'
+    };
+    return labels[ageCategory] || ageCategory;
   };
 
   return (
-    <div className="h-96 w-full rounded-lg overflow-hidden shadow-lg">
+    <div className="interactive-map-container">
       <MapContainer
         center={center}
         zoom={zoom}
         style={{ height: '100%', width: '100%' }}
-        className="z-10"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -83,21 +85,15 @@ const InteractiveMap = ({
             }}
           >
             <Popup>
-              <div className="p-2 min-w-[200px]">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-lg">Personne #{person.id}</h3>
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      person.locationVisited
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}
-                  >
-                    {person.locationVisited ? 'Visitée' : 'Non visitée'}
+              <div className="popup-content">
+                <div className="popup-header">
+                  <h3 className="popup-title">Personne #{person.id}</h3>
+                  <span className={`popup-status ${person.locationVisited ? 'popup-status-visited' : 'popup-status-unvisited'}`}>
+                    {person.locationVisited ? '✅ Visité' : '❌ Non visité'}
                   </span>
                 </div>
                 
-                <div className="space-y-1 text-sm">
+                <div className="popup-details">
                   <p><strong>Description:</strong> {person.description}</p>
                   <p><strong>Genre:</strong> {getGenderLabel(person.gender)}</p>
                   <p><strong>Âge:</strong> {getAgeCategoryLabel(person.ageCategory)}</p>
@@ -108,7 +104,7 @@ const InteractiveMap = ({
                 {onMarkerClick && (
                   <button
                     onClick={() => onMarkerClick(person)}
-                    className="mt-2 w-full bg-primary-500 text-white px-3 py-1 rounded text-sm hover:bg-primary-600 transition-colors"
+                    className="popup-button"
                   >
                     Voir les détails
                   </button>

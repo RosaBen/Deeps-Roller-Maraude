@@ -1,11 +1,6 @@
 import React, { useState, useRef } from 'react';
-import {
-  DocumentIcon,
-  XMarkIcon,
-  CloudArrowUpIcon,
-} from '@heroicons/react/24/outline';
 
-const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', label, icon: Icon }) => {
+const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', label }) => {
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -70,83 +65,77 @@ const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', l
   };
 
   return (
-    <div className="w-full">
+    <div className="file-upload-container">
       <input
         ref={inputRef}
         type="file"
-        className="hidden"
+        className="file-input-hidden"
         accept={acceptedTypes}
         onChange={handleChange}
       />
       
       {selectedFile ? (
         // Affichage du fichier sélectionné
-        <div className="relative">
+        <div className="file-selected">
           {preview ? (
             // Aperçu image
-            <div className="relative">
+            <div className="image-preview-container">
               <img 
                 src={preview} 
                 alt="Preview" 
-                className="w-full h-32 object-cover rounded-lg border border-gray-300"
+                className="image-preview"
               />
               <button
                 onClick={removeFile}
-                className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                className="remove-file-button image-remove"
               >
-                <XMarkIcon className="w-4 h-4" />
+                ❌
               </button>
             </div>
           ) : (
             // Aperçu fichier non-image
-            <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-gray-50">
-              <div className="flex items-center">
-                <DocumentIcon className="w-6 h-6 text-gray-500 mr-2" />
-                <span className="text-sm text-gray-700 truncate">
+            <div className="file-preview-container">
+              <div className="file-info">
+                <span className="file-icon">📄</span>
+                <span className="file-name">
                   {selectedFile.name}
                 </span>
               </div>
               <button
                 onClick={removeFile}
-                className="text-red-500 hover:text-red-700"
+                className="remove-file-button"
               >
-                <XMarkIcon className="w-5 h-5" />
+                ❌
               </button>
             </div>
           )}
           
-          <p className="text-xs text-gray-500 mt-1 text-center">
+          <p className="file-size">
             {selectedFile.name} ({(selectedFile.size / 1024).toFixed(1)} KB)
           </p>
         </div>
       ) : (
         // Zone de drop/upload
         <div
-          className={`relative border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-            dragActive 
-              ? 'border-primary-400 bg-primary-50' 
-              : 'border-gray-300 hover:border-gray-400'
-          }`}
+          className={`upload-zone ${dragActive ? 'upload-zone-active' : ''}`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
           onClick={onButtonClick}
         >
-          <div className="space-y-2">
-            {Icon ? (
-              <Icon className="mx-auto h-12 w-12 text-gray-400" />
-            ) : (
-              <CloudArrowUpIcon className="mx-auto h-12 w-12 text-gray-400" />
-            )}
-            <div className="text-sm text-gray-600">
-              <span className="font-medium text-primary-600 hover:text-primary-500">
+          <div className="upload-content">
+            <div className="upload-icon">
+              ☁️⬆️
+            </div>
+            <div className="upload-text">
+              <span className="upload-action">
                 Cliquez pour sélectionner
               </span>{' '}
               ou glissez-déposez un fichier
             </div>
             {label && (
-              <p className="text-xs text-gray-500">{label}</p>
+              <p className="upload-label">{label}</p>
             )}
           </div>
         </div>

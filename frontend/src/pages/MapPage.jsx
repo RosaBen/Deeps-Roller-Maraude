@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  PlusIcon,
-  FunnelIcon,
-  EyeIcon,
-  EyeSlashIcon,
-} from '@heroicons/react/24/outline';
 import InteractiveMap from '../components/InteractiveMap';
 import { personService } from '../services/api';
 
@@ -107,20 +101,18 @@ const MapPage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Chargement de la carte...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-md p-4">
-        <div className="text-red-800">{error}</div>
-        <button 
-          onClick={fetchPersons}
-          className="mt-2 text-red-600 hover:text-red-800 underline"
-        >
+      <div className="error-container">
+        <div className="error-message">{error}</div>
+        <button onClick={fetchPersons} className="retry-button">
           Réessayer
         </button>
       </div>
@@ -128,71 +120,66 @@ const MapPage = () => {
   }
 
   return (
-    <div className="space-y-6 pb-20 md:pb-6">
+    <div className="map-page">
       {/* En-tête */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Carte des rencontres</h1>
-          <p className="mt-1 text-sm text-gray-500">
+      <div className="page-header">
+        <div className="header-content">
+          <h1>Carte des rencontres</h1>
+          <p className="subtitle">
             {filteredPersons.length} personne{filteredPersons.length !== 1 ? 's' : ''} affichée{filteredPersons.length !== 1 ? 's' : ''}
           </p>
         </div>
-        <div className="mt-4 sm:mt-0">
-          <Link
-            to="/add"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700"
-          >
-            <PlusIcon className="w-5 h-5 mr-2" />
+        <div className="header-actions">
+          <Link to="/add" className="add-button">
+            <span className="button-icon">➕</span>
             Ajouter une personne
           </Link>
         </div>
       </div>
 
       {/* Filtres */}
-      <div className="bg-white p-4 rounded-lg shadow border">
-        <div className="flex items-center mb-4">
-          <FunnelIcon className="w-5 h-5 mr-2 text-gray-500" />
-          <h3 className="text-lg font-medium text-gray-900">Filtres</h3>
+      <div className="filters-container">
+        <div className="filters-header">
+          <span className="filter-icon">🔍</span>
+          <h3>Filtres</h3>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="filters-grid">
           {/* Statut de visite */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="filter-group">
+            <label className="filter-label">
               Statut de visite
             </label>
-            <div className="space-y-2">
-              <label className="flex items-center">
+            <div className="checkbox-group">
+              <label className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={filters.showVisited}
                   onChange={(e) => handleFilterChange('showVisited', e.target.checked)}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                 />
-                <span className="ml-2 text-sm text-gray-700">Lieux visités</span>
+                <span>Lieux visités</span>
               </label>
-              <label className="flex items-center">
+              <label className="checkbox-item">
                 <input
                   type="checkbox"
                   checked={filters.showUnvisited}
                   onChange={(e) => handleFilterChange('showUnvisited', e.target.checked)}
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                 />
-                <span className="ml-2 text-sm text-gray-700">Lieux non visités</span>
+                <span>Lieux non visités</span>
               </label>
             </div>
           </div>
 
           {/* Genre */}
-          <div>
-            <label htmlFor="gender-filter" className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="filter-group">
+            <label htmlFor="gender-filter" className="filter-label">
               Genre
             </label>
             <select
               id="gender-filter"
               value={filters.gender}
               onChange={(e) => handleFilterChange('gender', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              className="filter-select"
             >
               <option value="all">Tous les genres</option>
               <option value="homme">Homme</option>
@@ -203,15 +190,15 @@ const MapPage = () => {
           </div>
 
           {/* Catégorie d'âge */}
-          <div>
-            <label htmlFor="age-filter" className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="filter-group">
+            <label htmlFor="age-filter" className="filter-label">
               Catégorie d'âge
             </label>
             <select
               id="age-filter"
               value={filters.ageCategory}
               onChange={(e) => handleFilterChange('ageCategory', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              className="filter-select"
             >
               <option value="all">Toutes les catégories</option>
               <option value="adulte">Adulte</option>
@@ -220,18 +207,17 @@ const MapPage = () => {
           </div>
 
           {/* Statistiques rapides */}
-          <div className="flex flex-col justify-end">
-            <div className="text-sm text-gray-600">
-              <div>Total: {persons.length}</div>
-              <div>Visités: {persons.filter(p => p.locationVisited).length}</div>
-              <div>Non visités: {persons.filter(p => !p.locationVisited).length}</div>
-            </div>
+          <div className="stats-summary">
+            <div className="stats-title">Résumé</div>
+            <div className="stats-item">Total: {persons.length}</div>
+            <div className="stats-item">Visités: {persons.filter(p => p.locationVisited).length}</div>
+            <div className="stats-item">Non visités: {persons.filter(p => !p.locationVisited).length}</div>
           </div>
         </div>
       </div>
 
       {/* Carte */}
-      <div className="bg-white rounded-lg shadow border p-4">
+      <div className="map-container">
         <InteractiveMap
           persons={filteredPersons}
           onMarkerClick={handleMarkerClick}
@@ -242,94 +228,71 @@ const MapPage = () => {
 
       {/* Détail de la personne sélectionnée */}
       {selectedPerson && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-md shadow-lg rounded-md bg-white">
-            <div className="mt-3">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Personne #{selectedPerson.id}
-                </h3>
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3>Personne #{selectedPerson.id}</h3>
+              <button onClick={closePersonDetail} className="close-button">
+                ✕
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <div className="detail-item">
+                <label>Description</label>
+                <p>{selectedPerson.description}</p>
+              </div>
+
+              <div className="detail-row">
+                <div className="detail-item">
+                  <label>Genre</label>
+                  <p className="capitalize">{selectedPerson.gender}</p>
+                </div>
+                <div className="detail-item">
+                  <label>Âge</label>
+                  <p className="capitalize">{selectedPerson.ageCategory}</p>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <label>Date de rencontre</label>
+                <p>
+                  {new Date(selectedPerson.dateEncounter).toLocaleDateString('fr-FR')}
+                </p>
+              </div>
+
+              <div className="detail-item">
+                <label>Position</label>
+                <p className="position-text">
+                  {selectedPerson.latitude && !isNaN(selectedPerson.latitude) ? 
+                    Number(selectedPerson.latitude).toFixed(6) : 'N/A'}, {selectedPerson.longitude && !isNaN(selectedPerson.longitude) ? 
+                    Number(selectedPerson.longitude).toFixed(6) : 'N/A'}
+                </p>
+              </div>
+
+              <div className="status-item">
+                <span>Lieu visité</span>
                 <button
-                  onClick={closePersonDetail}
-                  className="text-gray-400 hover:text-gray-600"
+                  onClick={() => toggleLocationVisited(selectedPerson)}
+                  className={`status-button ${
+                    selectedPerson.locationVisited ? 'visited' : 'not-visited'
+                  }`}
                 >
-                  <span className="sr-only">Fermer</span>
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  <span className="status-icon">
+                    {selectedPerson.locationVisited ? '👁️' : '👁️‍🗨️'}
+                  </span>
+                  {selectedPerson.locationVisited ? 'Visité' : 'Non visité'}
                 </button>
               </div>
+            </div>
 
-              <div className="space-y-3">
-                <div>
-                  <label className="text-sm font-medium text-gray-500">Description</label>
-                  <p className="text-gray-900">{selectedPerson.description}</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-500">Genre</label>
-                    <p className="text-gray-900 capitalize">{selectedPerson.gender}</p>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-500">Âge</label>
-                    <p className="text-gray-900 capitalize">{selectedPerson.ageCategory}</p>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-gray-500">Date de rencontre</label>
-                  <p className="text-gray-900">
-                    {new Date(selectedPerson.dateEncounter).toLocaleDateString('fr-FR')}
-                  </p>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium text-gray-500">Position</label>
-                  <p className="text-gray-900 text-sm">
-                    {selectedPerson.latitude.toFixed(6)}, {selectedPerson.longitude.toFixed(6)}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-500">Lieu visité</span>
-                  <button
-                    onClick={() => toggleLocationVisited(selectedPerson)}
-                    className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                      selectedPerson.locationVisited
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}
-                  >
-                    {selectedPerson.locationVisited ? (
-                      <>
-                        <EyeIcon className="w-4 h-4 mr-1" />
-                        Visité
-                      </>
-                    ) : (
-                      <>
-                        <EyeSlashIcon className="w-4 h-4 mr-1" />
-                        Non visité
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex space-x-3 mt-6">
-                <button
-                  onClick={closePersonDetail}
-                  className="flex-1 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition-colors"
-                >
-                  Fermer
-                </button>
-                <Link
-                  to={`/dashboard`}
-                  className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors text-center"
-                >
-                  Voir détails
-                </Link>
-              </div>
+            <div className="modal-actions">
+              <button onClick={closePersonDetail} className="cancel-button">
+                Fermer
+              </button>
+              <Link to="/dashboard" className="primary-button">
+                Voir détails
+              </Link>
             </div>
           </div>
         </div>

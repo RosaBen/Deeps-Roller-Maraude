@@ -1,13 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  MapPinIcon,
-  CalendarIcon,
-  UserIcon,
-  DocumentTextIcon,
-  CameraIcon,
-  PhotoIcon,
-} from '@heroicons/react/24/outline';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { personService } from '../services/api';
 import { createPersonFormData } from '../types';
@@ -17,6 +9,9 @@ import FileUpload from '../components/FileUpload';
 
 const AddPersonPage = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const editId = searchParams.get('edit');
+  const isEditing = Boolean(editId);
   const { position, error: geoError, loading: geoLoading, getCurrentPosition } = useGeolocation();
   
   const [formData, setFormData] = useState(() => createPersonFormData({
@@ -31,16 +26,39 @@ const AddPersonPage = () => {
   const [showCamera, setShowCamera] = useState(false);
   const [showConsentForm, setShowConsentForm] = useState(false);
 
+  // Charger les données de la personne à éditer
+  useEffect(() => {
+    if (editId) {
+      const loadPersonForEdit = async () => {
+        try {
+          setLoading(true);
+          const person = await personService.getPersonById(editId);
+          setFormData(createPersonFormData({
+            ...person,
+            photoFile: null,
+            documentFile: null
+          }));
+        } catch (err) {
+          setError('Erreur lors du chargement des données de la personne');
+          console.error('Error loading person:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      loadPersonForEdit();
+    }
+  }, [editId]);
+
   // Mettre à jour les coordonnées quand la position change
-  React.useEffect(() => {
-    if (position) {
+  useEffect(() => {
+    if (position && !isEditing) {
       setFormData(prev => ({
         ...prev,
         latitude: position.latitude,
         longitude: position.longitude,
       }));
     }
-  }, [position]);
+  }, [position, isEditing]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -87,12 +105,13 @@ const AddPersonPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.description.trim()) {
-      setError('La description est obligatoire');
+    // Validation : seule la description et la position sont obligatoires
+    if (!formData.description || formData.description.trim().length < 10) {
+      setError('La description est obligatoire et doit contenir au moins 10 caractères');
       return;
     }
 
-    if (formData.latitude === 0 || formData.longitude === 0) {
+    if (!formData.latitude || !formData.longitude || formData.latitude === 0 || formData.longitude === 0) {
       setError('La géolocalisation est obligatoire');
       return;
     }
@@ -101,174 +120,118 @@ const AddPersonPage = () => {
       setLoading(true);
       setError(null);
       
-      await personService.createPerson(formData);
+      if (isEditing) {
+        await personService.updatePerson(editId, formData);
+      } else {
+        await personService.createPerson(formData);
+      }
       setSuccess(true);
       
       // Rediriger vers la page d'accueil après 2 secondes
       setTimeout(() => {
-        navigate('/');
+        navigate('/dashboard');
       }, 2000);
       
     } catch (err) {
-      setError('Erreur lors de l\'ajout de la personne');
-      console.error('Error creating person:', err);
+      setError(`Erreur lors de ${isEditing ? 'la modification' : 'l\'ajout'} de la personne : ` + (err.message || 'Erreur inconnue'));
+      console.error(`Error ${isEditing ? 'updating' : 'creating'} person:`, err);
     } finally {
       setLoading(false);
     }
   };
 
   const resetForm = () => {
-    setFormData({
-      description: '',
+    setFormData(createPersonFormData({
       latitude: position?.latitude || 0,
       longitude: position?.longitude || 0,
-      gender: 'non-specifie',
-      ageCategory: 'adulte',
       dateEncounter: new Date().toISOString().split('T')[0],
-      locationVisited: false,
-    });
+    }));
     setError(null);
     setSuccess(false);
   };
 
   if (success) {
     return (
-      <div className="max-w-md mx-auto mt-8 p-6">
-        <div className="text-center">
-          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-            <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
+      <div className="add-person-success">
+        <div className="success-content">
+          <div className="success-icon">
+            ✅
           </div>
-          <h3 className="mt-2 text-lg font-medium text-gray-900">Personne ajoutée avec succès</h3>
-          <p className="mt-1 text-sm text-gray-500">
-            Redirection en cours...
-          </p>
+          <h3>Personne ajoutée avec succès</h3>
+          <p>Redirection en cours...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-md mx-auto p-4 pb-24 md:pb-8">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Ajouter une personne</h1>
+    <div className="add-person-page">
+      <div className="add-person-container">
+        <h1 className="page-title">
+          {isEditing ? '✏️ Modifier la personne' : '➕ Ajouter une personne'}
+        </h1>
 
         {error && (
-          <div className="mb-4 bg-red-50 border border-red-200 rounded-md p-4">
-            <div className="text-red-800 text-sm">{error}</div>
+          <div className="error-message">
+            <span>⚠️ {error}</span>
           </div>
         )}
 
         {geoError && (
-          <div className="mb-4 bg-yellow-50 border border-yellow-200 rounded-md p-4">
-            <div className="text-yellow-800 text-sm">{geoError}</div>
+          <div className="warning-message">
+            <span>📍 {geoError}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Description */}
-          <div>
-            <label htmlFor="description" className="flex items-center text-sm font-medium text-gray-700 mb-2">
-              <DocumentTextIcon className="w-5 h-5 mr-2" />
-              Description de la personne *
+        <form onSubmit={handleSubmit} className="add-person-form">
+          {/* Description - OBLIGATOIRE */}
+          <div className="form-group">
+            <label htmlFor="description" className="form-label required">
+              📝 Description de la personne *
             </label>
             <textarea
               id="description"
               name="description"
-              rows={3}
+              rows={4}
               value={formData.description}
               onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              placeholder="Description physique, vêtements, situation observée..."
+              className="form-textarea"
+              placeholder="Décrivez la personne (minimum 10 caractères) : apparence, vêtements, situation observée..."
               required
             />
+            <div className="form-help">
+              {formData.description ? formData.description.length : 0}/10 caractères minimum
+            </div>
           </div>
 
-          {/* Genre */}
-          <div>
-            <label htmlFor="gender" className="flex items-center text-sm font-medium text-gray-700 mb-2">
-              <UserIcon className="w-5 h-5 mr-2" />
-              Genre
-            </label>
-            <select
-              id="gender"
-              name="gender"
-              value={formData.gender}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            >
-              <option value="non-specifie">Non spécifié</option>
-              <option value="homme">Homme</option>
-              <option value="femme">Femme</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-
-          {/* Catégorie d'âge */}
-          <div>
-            <label htmlFor="ageCategory" className="flex items-center text-sm font-medium text-gray-700 mb-2">
-              <UserIcon className="w-5 h-5 mr-2" />
-              Catégorie d'âge
-            </label>
-            <select
-              id="ageCategory"
-              name="ageCategory"
-              value={formData.ageCategory}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            >
-              <option value="adulte">Adulte</option>
-              <option value="enfant">Enfant</option>
-            </select>
-          </div>
-
-          {/* Date de rencontre */}
-          <div>
-            <label htmlFor="dateEncounter" className="flex items-center text-sm font-medium text-gray-700 mb-2">
-              <CalendarIcon className="w-5 h-5 mr-2" />
-              Date de rencontre
-            </label>
-            <input
-              type="date"
-              id="dateEncounter"
-              name="dateEncounter"
-              value={formData.dateEncounter}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-            />
-          </div>
-
-          {/* Géolocalisation */}
-          <div>
-            <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
-              <MapPinIcon className="w-5 h-5 mr-2" />
-              Position géographique
+          {/* Géolocalisation - OBLIGATOIRE */}
+          <div className="form-group">
+            <label className="form-label required">
+              📍 Position géographique *
             </label>
             
-            <div className="space-y-3">
+            <div className="location-controls">
               <button
                 type="button"
                 onClick={handleGetLocation}
                 disabled={geoLoading}
-                className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
+                className="location-button"
               >
                 {geoLoading ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-600 mr-2"></div>
+                    <div className="spinner"></div>
                     Obtention de la position...
                   </>
                 ) : (
                   <>
-                    <MapPinIcon className="w-4 h-4 mr-2" />
-                    Obtenir ma position actuelle
+                    📍 Obtenir ma position actuelle
                   </>
                 )}
               </button>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="coordinates-grid">
                 <div>
-                  <label htmlFor="latitude" className="block text-xs font-medium text-gray-500">
+                  <label htmlFor="latitude" className="coordinate-label">
                     Latitude
                   </label>
                   <input
@@ -278,12 +241,13 @@ const AddPersonPage = () => {
                     step="any"
                     value={formData.latitude}
                     onChange={handleInputChange}
-                    className="mt-1 w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                    className="form-input coordinate-input"
                     placeholder="48.8566"
+                    required
                   />
                 </div>
                 <div>
-                  <label htmlFor="longitude" className="block text-xs font-medium text-gray-500">
+                  <label htmlFor="longitude" className="coordinate-label">
                     Longitude
                   </label>
                   <input
@@ -293,135 +257,185 @@ const AddPersonPage = () => {
                     step="any"
                     value={formData.longitude}
                     onChange={handleInputChange}
-                    className="mt-1 w-full px-2 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                    className="form-input coordinate-input"
                     placeholder="2.3522"
+                    required
                   />
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Informations personnelles */}
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
-                Prénom
+          {/* Genre - OPTIONNEL */}
+          <div className="form-group">
+            <label htmlFor="gender" className="form-label">
+              👤 Genre (optionnel)
+            </label>
+            <select
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              className="form-select"
+            >
+              <option value="non-specifie">Non spécifié</option>
+              <option value="homme">Homme</option>
+              <option value="femme">Femme</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          {/* Catégorie d'âge - OPTIONNEL */}
+          <div className="form-group">
+            <label htmlFor="ageCategory" className="form-label">
+              🎂 Catégorie d'âge (optionnel)
+            </label>
+            <select
+              id="ageCategory"
+              name="ageCategory"
+              value={formData.ageCategory}
+              onChange={handleInputChange}
+              className="form-select"
+            >
+              <option value="adulte">Adulte</option>
+              <option value="enfant">Enfant</option>
+            </select>
+          </div>
+
+          {/* Date de rencontre */}
+          <div className="form-group">
+            <label htmlFor="dateEncounter" className="form-label">
+              📅 Date de rencontre
+            </label>
+            <input
+              type="date"
+              id="dateEncounter"
+              name="dateEncounter"
+              value={formData.dateEncounter}
+              onChange={handleInputChange}
+              className="form-input"
+            />
+          </div>
+
+          {/* Informations personnelles - OPTIONNELLES */}
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="firstName" className="form-label">
+                Prénom (optionnel)
               </label>
               <input
                 type="text"
                 id="firstName"
                 name="firstName"
-                value={formData.firstName}
+                value={formData.firstName || ''}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                placeholder="Prénom (optionnel)"
+                className="form-input"
+                placeholder="Prénom"
               />
             </div>
-            <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
-                Nom
+            <div className="form-group">
+              <label htmlFor="lastName" className="form-label">
+                Nom (optionnel)
               </label>
               <input
                 type="text"
                 id="lastName"
                 name="lastName"
-                value={formData.lastName}
+                value={formData.lastName || ''}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                placeholder="Nom (optionnel)"
+                className="form-input"
+                placeholder="Nom"
               />
             </div>
           </div>
 
-          {/* Photo */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Photo de la personne
+          {/* Photo - OPTIONNELLE */}
+          <div className="form-group">
+            <label className="form-label">
+              📷 Photo de la personne (optionnel)
             </label>
-            <div className="space-y-3">
-              <div className="flex space-x-3">
+            <div className="photo-controls">
+              <div className="button-row">
                 <button
                   type="button"
                   onClick={() => setShowCamera(true)}
-                  className="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  className="secondary-button"
                 >
-                  <CameraIcon className="w-5 h-5 mr-2" />
-                  Prendre une photo
+                  📷 Prendre une photo
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowConsentForm(true)}
-                  className="flex-1 flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  className="secondary-button"
                 >
-                  <DocumentTextIcon className="w-5 h-5 mr-2" />
-                  Formulaire consentement
+                  📄 Formulaire consentement
                 </button>
               </div>
               
               {formData.photoFile && (
-                <div className="text-sm text-green-600">
+                <div className="file-status success">
                   ✓ Photo sélectionnée: {formData.photoFile.name}
                 </div>
               )}
               
               {formData.consentGiven && (
-                <div className="text-sm text-green-600">
+                <div className="file-status success">
                   ✓ Consentement obtenu de {formData.firstName} {formData.lastName}
                 </div>
               )}
             </div>
           </div>
 
-          {/* Documents */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Documents (optionnel)
+          {/* Documents - OPTIONNELS */}
+          <div className="form-group">
+            <label className="form-label">
+              📎 Documents (optionnel)
             </label>
             <FileUpload
               onFileSelect={handleFileSelect}
               acceptedTypes="image/*,application/pdf,.doc,.docx"
               label="Images ou documents PDF/Word acceptés"
-              icon={PhotoIcon}
             />
           </div>
 
-          {/* Lieu déjà visité */}
-          <div>
-            <label className="flex items-center">
+          {/* Lieu déjà visité - OPTIONNEL */}
+          <div className="form-group">
+            <label className="checkbox-label">
               <input
                 type="checkbox"
                 name="locationVisited"
-                checked={formData.locationVisited}
+                checked={formData.locationVisited || false}
                 onChange={handleInputChange}
-                className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                className="form-checkbox"
               />
-              <span className="ml-2 text-sm text-gray-700">
-                Ce lieu a déjà été visité pour une distribution
-              </span>
+              <span>📍 Ce lieu a déjà été visité pour une distribution</span>
             </label>
           </div>
 
           {/* Boutons */}
-          <div className="flex space-x-3 pt-4">
+          <div className="form-actions">
             <button
               type="button"
               onClick={resetForm}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="secondary-button"
             >
-              Réinitialiser
+              🔄 Réinitialiser
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
+              className="primary-button"
             >
-              {loading ? 'Ajout...' : 'Ajouter'}
+              {loading 
+                ? `⏳ ${isEditing ? 'Modification' : 'Ajout'}...` 
+                : `${isEditing ? '✅ Modifier la personne' : '✅ Ajouter la personne'}`
+              }
             </button>
           </div>
         </form>
       </div>
 
-      {/* Modal caméra */}
+      {/* Modals */}
       {showCamera && (
         <CameraCapture
           onCapture={handleCameraCapture}
@@ -429,7 +443,6 @@ const AddPersonPage = () => {
         />
       )}
 
-      {/* Modal formulaire de consentement */}
       {showConsentForm && (
         <ConsentForm
           onSubmit={handleConsentSubmit}
