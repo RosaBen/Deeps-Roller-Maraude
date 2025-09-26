@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { createPerson, createDashboardStats } from '../types';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/v1';
 
@@ -14,7 +13,7 @@ export const personService = {
   // Récupérer toutes les personnes
   async getAllPersons () {
     const response = await api.get('/persons');
-    return response.data.map(createPerson);
+    return response.data;
   },
 
   // Créer une nouvelle personne avec fichiers
@@ -41,7 +40,7 @@ export const personService = {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return createPerson(response.data);
+    return response.data;
   },
 
   // Mettre à jour une personne
@@ -66,7 +65,7 @@ export const personService = {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return createPerson(response.data);
+    return response.data;
   },
 
   // Supprimer une personne
@@ -77,13 +76,13 @@ export const personService = {
   // Récupérer une personne par ID
   async getPersonById (id) {
     const response = await api.get(`/persons/${id}`);
-    return createPerson(response.data);
+    return response.data;
   },
 
   // Récupérer les statistiques du dashboard
   async getDashboardStats () {
     const response = await api.get('/dashboard/stats');
-    return createDashboardStats(response.data);
+    return response.data;
   },
 };
 
