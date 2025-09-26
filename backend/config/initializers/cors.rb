@@ -18,7 +18,10 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   
   # Pour la production, remplacez par votre domaine
   allow do
-    origins /https:\/\/.*\.netlify\.app/, /https:\/\/.*\.vercel\.app/
+    origins /https:\/\/.*\.netlify\.app/, 
+            /https:\/\/.*\.vercel\.app/,
+            /https:\/\/.*\.onrender\.com/,
+            ENV.fetch('CORS_ORIGINS', '').split(',')
 
     resource "*",
       headers: :any,

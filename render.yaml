@@ -1,0 +1,22 @@
+databases:
+  - name: deeps-roller-maraude-db
+    databaseName: deeps_roller_maraude_production
+    user: deeps_roller_maraude
+
+services:
+  - type: web
+    name: deeps-roller-maraude-api
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: deeps-roller-maraude-db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: RAILS_ENV
+        value: production
+      - key: BUNDLE_WITHOUT
+        value: development:test
