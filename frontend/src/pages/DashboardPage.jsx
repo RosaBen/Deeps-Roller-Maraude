@@ -54,7 +54,7 @@ const DashboardPage = () => {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette personne ?')) {
       return;
     }
@@ -68,7 +68,7 @@ const DashboardPage = () => {
     }
   };
 
-  const toggleVisited = async (person: Person) => {
+  const toggleVisited = async (person) => {
     try {
       await personService.updatePerson(person.id, {
         locationVisited: !person.locationVisited
@@ -147,7 +147,7 @@ const DashboardPage = () => {
 
   // Données pour le graphique temporel (par semaine)
   const getWeeklyData = () => {
-    const weeks: { [key: string]: number } = {};
+    const weeks = {};
     
     persons.forEach(person => {
       const date = new Date(person.dateEncounter);
