@@ -749,3 +749,271 @@ Processing by Api::V1::PersonsController#index as HTML
 Completed 200 OK in 192ms (Views: 1.5ms | ActiveRecord: 42.3ms (31 queries, 0 cached) | GC: 2.7ms)
 
 
+Started GET "/api/v1/persons" for ::1 at 2025-09-26 19:31:56 +0200
+Started GET "/api/v1/persons" for ::1 at 2025-09-26 19:31:56 +0200
+Processing by Api::V1::PersonsController#index as HTML
+Processing by Api::V1::PersonsController#index as HTML
+  [1m[36mPerson Load (40.0ms)[0m  [1m[34mSELECT "people".* FROM "people" ORDER BY "people"."date_encounter" DESC /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/controllers/api/v1/persons_controller.rb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mPerson Load (46.1ms)[0m  [1m[34mSELECT "people".* FROM "people" ORDER BY "people"."date_encounter" DESC /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/controllers/api/v1/persons_controller.rb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  [1m[36mActiveStorage::Attachment Load (5.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (2.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (2.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (10.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (5.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (5.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+Completed 200 OK in 226ms (Views: 3.1ms | ActiveRecord: 94.9ms (31 queries, 0 cached) | GC: 30.6ms)
+
+
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+Completed 200 OK in 219ms (Views: 0.7ms | ActiveRecord: 125.1ms (31 queries, 0 cached) | GC: 23.5ms)
+
+
+Started GET "/api/v1/persons" for ::1 at 2025-09-26 19:35:40 +0200
+Started GET "/api/v1/persons" for ::1 at 2025-09-26 19:35:40 +0200
+Processing by Api::V1::PersonsController#index as HTML
+Processing by Api::V1::PersonsController#index as HTML
+  [1m[36mPerson Load (11.2ms)[0m  [1m[34mSELECT "people".* FROM "people" ORDER BY "people"."date_encounter" DESC /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/controllers/api/v1/persons_controller.rb:7:in 'Enumerable#map'
+  [1m[36mPerson Load (4.2ms)[0m  [1m[34mSELECT "people".* FROM "people" ORDER BY "people"."date_encounter" DESC /*action='index',application='Backend',controller='persons'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/controllers/api/v1/persons_controller.rb:7:in 'Enumerable#map'
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (3.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 8 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (7.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (12.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 7 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (7.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 13 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (2.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 5 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (2.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 9 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 6 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 4 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (4.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 3 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 11 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (6.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 10 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (2.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (2.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 12 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (1.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 14 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+Completed 200 OK in 170ms (Views: 1.9ms | ActiveRecord: 47.8ms (31 queries, 0 cached) | GC: 14.5ms)
+
+
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:47:in 'Person#photo_url'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 15 AND "active_storage_attachments"."record_type" = 'Person' AND "active_storage_attachments"."name" = 'document' LIMIT 1 /*action='index',application='Backend',controller='persons'*/[0m
+  ↳ app/models/person.rb:51:in 'Person#document_url'
+Completed 200 OK in 202ms (Views: 3.6ms | ActiveRecord: 71.0ms (31 queries, 0 cached) | GC: 14.5ms)
+
+

@@ -150,14 +150,11 @@ const AddPersonPage = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 pb-24 md:pb-8">
-      {/* En-tête moderne */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-          <UserIcon className="w-8 h-8 text-blue-600" />
-        </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Nouvelle rencontre</h1>
-        <p className="text-gray-600">Enregistrez les informations d'une personne en situation de rue</p>
+    <div className="max-w-2xl mx-auto p-4 pb-24 md:pb-8">
+      {/* En-tête simplifié */}
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">Nouvelle rencontre</h1>
+        <p className="text-sm text-gray-600">Enregistrez les informations d'une personne rencontrée</p>
       </div>
 
       {error && (
@@ -184,56 +181,69 @@ const AddPersonPage = () => {
 
               <form onSubmit={handleSubmit} className="space-y-8">
           {/* Section 1: Description principale */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center mb-4">
-              <DocumentTextIcon className="w-6 h-6 text-blue-600 mr-3" />
-              <h2 className="text-lg font-semibold text-gray-900">Description de la rencontre</h2>
-            </div>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <h2 className="text-base font-medium text-gray-900 mb-3 flex items-center">
+              <DocumentTextIcon className="w-4 h-4 text-gray-600 mr-2" />
+              Description
+            </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
                   Description de la personne *
                 </label>
                 <textarea
                   id="description"
                   name="description"
-                  rows={4}
+                  rows={3}
                   value={formData.description}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  placeholder="Décrivez la personne: apparence physique, vêtements, situation observée..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Apparence, vêtements, situation..."
                   required
                 />
               </div>
               
-              <div>
-                <label htmlFor="dateEncounter" className="block text-sm font-medium text-gray-700 mb-2">
-                  <CalendarIcon className="w-4 h-4 inline mr-1" />
-                  Date de rencontre
-                </label>
-                <input
-                  type="date"
-                  id="dateEncounter"
-                  name="dateEncounter"
-                  value={formData.dateEncounter}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="dateEncounter" className="block text-sm font-medium text-gray-700 mb-1">
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    id="dateEncounter"
+                    name="dateEncounter"
+                    value={formData.dateEncounter}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                <div className="flex items-end">
+                  <label className="flex items-center text-sm">
+                    <input
+                      type="checkbox"
+                      name="locationVisited"
+                      checked={formData.locationVisited}
+                      onChange={handleInputChange}
+                      className="h-4 w-4 text-blue-600 rounded border-gray-300 mr-2"
+                    />
+                    Lieu déjà visité
+                  </label>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Section 2: Informations personnelles */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center mb-4">
-              <UserIcon className="w-6 h-6 text-green-600 mr-3" />
-              <h2 className="text-lg font-semibold text-gray-900">Informations personnelles</h2>
-            </div>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <h2 className="text-base font-medium text-gray-900 mb-3 flex items-center">
+              <UserIcon className="w-4 h-4 text-gray-600 mr-2" />
+              Informations
+            </h2>
             
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
                   Genre
                 </label>
                 <select
@@ -241,7 +251,7 @@ const AddPersonPage = () => {
                   name="gender"
                   value={formData.gender}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="non-specifie">Non spécifié</option>
                   <option value="homme">Homme</option>
@@ -251,15 +261,15 @@ const AddPersonPage = () => {
               </div>
 
               <div>
-                <label htmlFor="ageCategory" className="block text-sm font-medium text-gray-700 mb-2">
-                  Catégorie d'âge
+                <label htmlFor="ageCategory" className="block text-sm font-medium text-gray-700 mb-1">
+                  Âge
                 </label>
                 <select
                   id="ageCategory"
                   name="ageCategory"
                   value={formData.ageCategory}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 >
                   <option value="adulte">Adulte</option>
                   <option value="enfant">Enfant</option>
@@ -267,8 +277,8 @@ const AddPersonPage = () => {
               </div>
 
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                  Prénom (optionnel)
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+                  Prénom
                 </label>
                 <input
                   type="text"
@@ -276,14 +286,14 @@ const AddPersonPage = () => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Prénom"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Optionnel"
                 />
               </div>
               
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                  Nom (optionnel)
+                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+                  Nom
                 </label>
                 <input
                   type="text"
@@ -291,43 +301,43 @@ const AddPersonPage = () => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Nom"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Optionnel"
                 />
               </div>
             </div>
           </div>
 
           {/* Section 3: Localisation */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center mb-4">
-              <MapPinIcon className="w-6 h-6 text-red-600 mr-3" />
-              <h2 className="text-lg font-semibold text-gray-900">Localisation</h2>
-            </div>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <h2 className="text-base font-medium text-gray-900 mb-3 flex items-center">
+              <MapPinIcon className="w-4 h-4 text-gray-600 mr-2" />
+              Localisation
+            </h2>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               <button
                 type="button"
                 onClick={handleGetLocation}
                 disabled={geoLoading}
-                className="w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-md hover:from-blue-600 hover:to-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 transition-all duration-200"
+                className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 disabled:opacity-50 transition-colors"
               >
                 {geoLoading ? (
                   <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-3"></div>
-                    Obtention de votre position...
+                    <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                    Localisation...
                   </>
                 ) : (
                   <>
-                    <MapPinIcon className="w-5 h-5 mr-3" />
-                    📍 Obtenir ma position actuelle
+                    <MapPinIcon className="w-4 h-4 mr-2" />
+                    Obtenir ma position
                   </>
                 )}
               </button>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label htmlFor="latitude" className="block text-sm font-medium text-gray-600">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="latitude" className="block text-xs font-medium text-gray-600 mb-1">
                     Latitude
                   </label>
                   <input
@@ -337,12 +347,12 @@ const AddPersonPage = () => {
                     step="any"
                     value={formData.latitude}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="48.8566"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label htmlFor="longitude" className="block text-sm font-medium text-gray-600">
+                <div>
+                  <label htmlFor="longitude" className="block text-xs font-medium text-gray-600 mb-1">
                     Longitude
                   </label>
                   <input
@@ -352,117 +362,91 @@ const AddPersonPage = () => {
                     step="any"
                     value={formData.longitude}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-2 py-1 border border-gray-300 rounded text-xs focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="2.3522"
                   />
                 </div>
               </div>
-              
-              <div className="bg-gray-50 rounded-lg p-4">
-                <label className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    name="locationVisited"
-                    checked={formData.locationVisited}
-                    onChange={handleInputChange}
-                    className="mt-1 h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-2 focus:ring-blue-500"
-                  />
-                  <div className="flex-1">
-                    <span className="text-sm font-medium text-gray-900">Lieu déjà visité</span>
-                    <p className="text-xs text-gray-600 mt-1">Ce lieu a déjà été visité pour une distribution</p>
-                  </div>
-                </label>
-              </div>
             </div>
           </div>
 
-          {/* Section 4: Médias et documents */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center mb-4">
-              <CameraIcon className="w-6 h-6 text-purple-600 mr-3" />
-              <h2 className="text-lg font-semibold text-gray-900">Photos et documents</h2>
-            </div>
+          {/* Section 4: Médias et documents (optionnel) */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <h2 className="text-base font-medium text-gray-900 mb-3 flex items-center">
+              <CameraIcon className="w-4 h-4 text-gray-600 mr-2" />
+              Photos et documents (optionnel)
+            </h2>
             
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setShowCamera(true)}
-                  className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors duration-200"
+                  className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:ring-1 focus:ring-blue-500"
                 >
-                  <CameraIcon className="w-8 h-8 text-gray-400 mb-2" />
-                  <span className="text-sm font-medium text-gray-900">Prendre une photo</span>
-                  <span className="text-xs text-gray-500">Appareil photo</span>
+                  <CameraIcon className="w-4 h-4 mr-2" />
+                  Photo
                 </button>
                 
                 <button
                   type="button"
                   onClick={() => setShowConsentForm(true)}
-                  className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-400 hover:bg-green-50 transition-colors duration-200"
+                  className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-700 hover:bg-gray-50 focus:ring-1 focus:ring-blue-500"
                 >
-                  <DocumentTextIcon className="w-8 h-8 text-gray-400 mb-2" />
-                  <span className="text-sm font-medium text-gray-900">Consentement</span>
-                  <span className="text-xs text-gray-500">Formulaire légal</span>
+                  <DocumentTextIcon className="w-4 h-4 mr-2" />
+                  Consentement
                 </button>
               </div>
               
-              <div>
-                <FileUpload
-                  onFileSelect={handleFileSelect}
-                  acceptedTypes="image/*,application/pdf,.doc,.docx"
-                  label="Ajouter des documents (PDF, images, Word...)"
-                  icon={PhotoIcon}
-                />
-              </div>
+              <FileUpload
+                onFileSelect={handleFileSelect}
+                acceptedTypes="image/*,application/pdf,.doc,.docx"
+                label="Documents (PDF, images...)"
+                icon={PhotoIcon}
+              />
               
-              {/* Confirmations */}
-              <div className="space-y-2">
-                {formData.photoFile && (
-                  <div className="flex items-center p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <svg className="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
-                    </svg>
-                    <span className="text-sm text-green-800 font-medium">Photo capturée: {formData.photoFile.name}</span>
-                  </div>
-                )}
-                
-                {formData.consentGiven && (
-                  <div className="flex items-center p-3 bg-green-50 border border-green-200 rounded-lg">
-                    <svg className="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
-                    </svg>
-                    <span className="text-sm text-green-800 font-medium">
-                      Consentement obtenu de {formData.firstName} {formData.lastName}
-                    </span>
-                  </div>
-                )}
-              </div>
+              {/* Confirmations compactes */}
+              {(formData.photoFile || formData.consentGiven) && (
+                <div className="space-y-1">
+                  {formData.photoFile && (
+                    <div className="text-xs text-green-600 flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                      Photo: {formData.photoFile.name}
+                    </div>
+                  )}
+                  
+                  {formData.consentGiven && (
+                    <div className="text-xs text-green-600 flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                      Consentement: {formData.firstName} {formData.lastName}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
           {/* Boutons d'action */}
-          <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-3 space-y-3 space-y-reverse sm:space-y-0">
+          <div className="flex space-x-3 pt-2">
             <button
               type="button"
               onClick={resetForm}
-              className="w-full sm:w-auto px-6 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-1 focus:ring-gray-500"
             >
-              🔄 Réinitialiser
+              Réinitialiser
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-lg shadow-md hover:from-green-600 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              className="flex-2 px-6 py-2 bg-blue-600 text-white font-medium rounded-md text-sm hover:bg-blue-700 focus:ring-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                  <div className="animate-spin rounded-full h-3 w-3 border-2 border-white border-t-transparent mr-2"></div>
                   Enregistrement...
                 </span>
               ) : (
-                <span className="flex items-center justify-center">
-                  💾 Enregistrer la rencontre
-                </span>
+                'Enregistrer'
               )}
             </button>
           </div>
