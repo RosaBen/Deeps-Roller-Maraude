@@ -10,16 +10,65 @@
 4. Activez Google Analytics (optionnel)
 5. Créez le projet
 
-### 2. Configuration de Firestore Database
+### 2. Configuration de Realtime Database
 
-1. Dans la console Firebase, allez dans "Firestore Database"
+1. Dans la console Firebase, allez dans "Realtime Database"
 2. Cliquez sur "Créer une base de données"
-3. Choisissez le mode "production" 
+3. Choisissez une région proche (Europe pour la France)
+4. Commencez en mode "verrouillé" puis configurez les règles de sécurité
+
+### 2bis. Alternative : Configuration de Firestore Database
+
+1. Dans la console Firebase, allez dans "Firestore Database"  
+2. Cliquez sur "Créer une base de données"
+3. Choisissez le mode "production"
 4. Sélectionnez une région proche (Europe pour la France)
 
-#### Structure des collections
+#### Structure Realtime Database
 
-```javascript
+```json
+// Structure JSON pour Realtime Database
+{
+  "persons": {
+    "person_id_1": {
+      "description": "string",
+      "latitude": "number", 
+      "longitude": "number",
+      "gender": "string",
+      "ageCategory": "string",
+      "dateEncounter": "timestamp",
+      "locationVisited": "boolean",
+      "firstName": "string",
+      "lastName": "string", 
+      "consentGiven": "boolean",
+      "signature": "string",
+      "photoUrl": "string",
+      "documentUrl": "string",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp",
+      "createdBy": "string"
+    }
+  },
+  "users": {
+    "user_id_1": {
+      "email": "string",
+      "displayName": "string", 
+      "role": "string",
+      "isActive": "boolean",
+      "createdAt": "timestamp"
+    }
+  },
+  "counters": {
+    "totalPersons": 0,
+    "activeVolunteers": 0,
+    "todayEncounters": 0
+  }
+}
+```
+
+#### Structure des collections Firestore (alternative)
+
+```javascript  
 // Collection: persons
 {
   id: "auto-generated",
@@ -85,7 +134,35 @@ service firebase.storage {
    - `localhost` (développement)
    - Votre domaine de production
 
-### 5. Règles de Sécurité Firestore
+### 5. Règles de Sécurité Realtime Database
+
+```json
+{
+  "rules": {
+    // Seuls les utilisateurs authentifiés peuvent accéder aux données
+    "persons": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    
+    // Les utilisateurs peuvent lire leur propre profil
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid"
+      }
+    },
+    
+    // Compteurs accessibles en lecture seule
+    "counters": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}
+```
+
+### 5bis. Règles de Sécurité Firestore (alternative)
 
 ```javascript
 rules_version = '2';
@@ -122,6 +199,7 @@ service cloud.firestore {
 const firebaseConfig = {
   apiKey: "votre-api-key",
   authDomain: "votre-project-id.firebaseapp.com",
+  databaseURL: "https://votre-project-id-default-rtdb.europe-west1.firebasedatabase.app/", // Pour Realtime Database
   projectId: "votre-project-id",
   storageBucket: "votre-project-id.appspot.com",
   messagingSenderId: "votre-sender-id",
@@ -139,6 +217,7 @@ Créez `.env.local` dans le frontend :
 # Frontend .env.local
 REACT_APP_FIREBASE_API_KEY=votre-api-key
 REACT_APP_FIREBASE_AUTH_DOMAIN=votre-project-id.firebaseapp.com
+REACT_APP_FIREBASE_DATABASE_URL=https://votre-project-id-default-rtdb.europe-west1.firebasedatabase.app/
 REACT_APP_FIREBASE_PROJECT_ID=votre-project-id
 REACT_APP_FIREBASE_STORAGE_BUCKET=votre-project-id.appspot.com
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=votre-sender-id
