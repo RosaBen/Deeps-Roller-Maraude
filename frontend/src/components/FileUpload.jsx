@@ -70,83 +70,112 @@ const FileUpload = ({ onFileSelect, acceptedTypes = 'image/*,application/pdf', l
   };
 
   return (
-    <div className="w-full">
+    <div style={{ width: '100%' }}>
       <input
         ref={inputRef}
         type="file"
-        className="hidden"
+        style={{ display: 'none' }}
         accept={acceptedTypes}
         onChange={handleChange}
       />
       
       {selectedFile ? (
         // Affichage du fichier sélectionné
-        <div className="relative">
+        <div style={{ position: 'relative' }}>
           {preview ? (
             // Aperçu image
-            <div className="relative">
+            <div style={{ position: 'relative' }}>
               <img 
                 src={preview} 
                 alt="Preview" 
-                className="w-full h-32 object-cover rounded-lg border border-gray-300"
+                style={{
+                  width: '100%',
+                  height: '120px',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  border: '1px solid #d1d5db'
+                }}
               />
               <button
                 onClick={removeFile}
-                className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
+                style={{
+                  position: 'absolute',
+                  top: '8px',
+                  right: '8px',
+                  background: '#ef4444',
+                  color: 'white',
+                  padding: '4px',
+                  borderRadius: '50%',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
               >
-                <XMarkIcon className="w-4 h-4" />
+                <XMarkIcon style={{ width: '16px', height: '16px' }} />
               </button>
             </div>
           ) : (
             // Aperçu fichier non-image
-            <div className="flex items-center justify-between p-3 border border-gray-300 rounded-lg bg-gray-50">
-              <div className="flex items-center">
-                <DocumentIcon className="w-6 h-6 text-gray-500 mr-2" />
-                <span className="text-sm text-gray-700 truncate">
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '12px',
+              border: '1px solid #d1d5db',
+              borderRadius: '8px',
+              background: '#f9fafb'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <DocumentIcon style={{ width: '16px', height: '16px', color: '#6b7280', marginRight: '8px' }} />
+                <span style={{ fontSize: '14px', color: '#374151' }}>
                   {selectedFile.name}
                 </span>
               </div>
               <button
                 onClick={removeFile}
-                className="text-red-500 hover:text-red-700"
+                style={{ color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer' }}
               >
-                <XMarkIcon className="w-5 h-5" />
+                <XMarkIcon style={{ width: '16px', height: '16px' }} />
               </button>
             </div>
           )}
           
-          <p className="text-xs text-gray-500 mt-1 text-center">
+          <p style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px', textAlign: 'center', margin: '4px 0 0 0' }}>
             {selectedFile.name} ({(selectedFile.size / 1024).toFixed(1)} KB)
           </p>
         </div>
       ) : (
         // Zone de drop/upload
         <div
-          className={`relative border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-            dragActive 
-              ? 'border-primary-400 bg-primary-50' 
-              : 'border-gray-300 hover:border-gray-400'
-          }`}
+          style={{
+            position: 'relative',
+            border: '2px dashed #d1d5db',
+            borderRadius: '8px',
+            padding: '16px',
+            textAlign: 'center',
+            cursor: 'pointer',
+            backgroundColor: dragActive ? '#f0f9ff' : 'transparent',
+            borderColor: dragActive ? '#3b82f6' : '#d1d5db'
+          }}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
           onClick={onButtonClick}
         >
-          <div className="space-y-2">
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
             {Icon ? (
-              <Icon className="mx-auto h-12 w-12 text-gray-400" />
+              <Icon style={{ width: '20px', height: '20px', color: '#9ca3af' }} />
             ) : (
-              <CloudArrowUpIcon className="mx-auto h-12 w-12 text-gray-400" />
+              <CloudArrowUpIcon style={{ width: '20px', height: '20px', color: '#9ca3af' }} />
             )}
-            <div className="text-sm text-gray-600">
-              <span className="font-medium text-primary-600 hover:text-primary-500">
+            <div style={{ fontSize: '14px', color: '#4b5563' }}>
+              <span style={{ fontWeight: '500', color: '#3b82f6' }}>
                 Cliquez pour sélectionner
               </span>{' '}
-              ou glissez-déposez un fichier
+              ou glissez-déposez
             </div>
             {label && (
-              <p className="text-xs text-gray-500">{label}</p>
+              <p style={{ fontSize: '12px', color: '#6b7280', margin: 0 }}>{label}</p>
             )}
           </div>
         </div>

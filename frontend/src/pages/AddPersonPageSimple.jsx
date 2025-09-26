@@ -5,6 +5,7 @@ import { personService } from '../services/api';
 import { createPersonFormData } from '../types';
 import CameraCapture from '../components/CameraCapture';
 import ConsentForm from '../components/ConsentForm';
+import FileUpload from '../components/FileUpload';
 
 // Icônes inline SVG pour contrôler la taille
 const DocumentIcon = () => (
@@ -485,43 +486,11 @@ const AddPersonPage = () => {
             </button>
           </div>
           
-          {/* Upload de fichier simplifié */}
-          <div style={{ width: '100%' }}>
-            <input
-              type="file"
-              style={{ display: 'none' }}
-              accept="image/*,application/pdf,.doc,.docx"
-              onChange={(e) => {
-                if (e.target.files && e.target.files[0]) {
-                  handleFileSelect(e.target.files[0]);
-                }
-              }}
-              id="fileInput"
-            />
-            <div
-              style={{
-                border: '2px dashed #d1d5db',
-                borderRadius: '8px',
-                padding: '12px',
-                textAlign: 'center',
-                cursor: 'pointer',
-                backgroundColor: '#f9fafb'
-              }}
-              onClick={() => document.getElementById('fileInput').click()}
-            >
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                <svg style={{ width: '16px', height: '16px', color: '#9ca3af' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                </svg>
-                <div style={{ fontSize: '13px', color: '#4b5563' }}>
-                  <span style={{ fontWeight: '500', color: '#3b82f6' }}>
-                    Sélectionner un fichier
-                  </span>
-                </div>
-                <p style={{ fontSize: '11px', color: '#6b7280', margin: 0 }}>Documents (PDF, images...)</p>
-              </div>
-            </div>
-          </div>
+          <FileUpload
+            onFileSelect={handleFileSelect}
+            acceptedTypes="image/*,application/pdf,.doc,.docx"
+            label="Documents (PDF, images...)"
+          />
 
           {/* Confirmations */}
           {(formData.photoFile || formData.consentGiven) && (
