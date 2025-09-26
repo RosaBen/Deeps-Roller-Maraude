@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import {
-  PhotoIcon,
   DocumentIcon,
   XMarkIcon,
   CloudArrowUpIcon,

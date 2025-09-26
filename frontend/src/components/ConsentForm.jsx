@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import {
   DocumentTextIcon,
-  PencilIcon,
   TrashIcon,
   CheckIcon,
   XMarkIcon,
