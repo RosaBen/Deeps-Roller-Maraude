@@ -39,7 +39,7 @@ const Navigation = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
-              <h1 className="text-xl font-bold text-primary-600">
+              <h1 className="text-xl font-bold text-blue-600">
                 Deeps Roller Maraude
               </h1>
             </Link>
@@ -55,7 +55,7 @@ const Navigation = () => {
                   to={item.href}
                   className={`inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-primary-100 text-primary-700'
+                      ? 'bg-blue-100 text-blue-700'
                       : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
                   }`}
                 >
@@ -79,7 +79,7 @@ const Navigation = () => {
                 to={item.href}
                 className={`flex flex-col items-center py-2 px-1 transition-colors ${
                   isActive
-                    ? 'text-primary-600'
+                    ? 'text-blue-600'
                     : 'text-gray-500'
                 }`}
               >

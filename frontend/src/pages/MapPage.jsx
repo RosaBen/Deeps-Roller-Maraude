@@ -67,14 +67,14 @@ const MapPage = () => {
     applyFilters();
   }, [applyFilters]);
 
-  const handleFilterChange = (filterName: string, value: any) => {
+  const handleFilterChange = (filterName, value) => {
     setFilters(prev => ({
       ...prev,
       [filterName]: value,
     }));
   };
 
-  const handleMarkerClick = (person: Person) => {
+  const handleMarkerClick = (person) => {
     setSelectedPerson(person);
   };
 
@@ -82,7 +82,7 @@ const MapPage = () => {
     setSelectedPerson(null);
   };
 
-  const toggleLocationVisited = async (person: Person) => {
+  const toggleLocationVisited = async (person) => {
     try {
       await personService.updatePerson(person.id, {
         locationVisited: !person.locationVisited
