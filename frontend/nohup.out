@@ -1,0 +1,175 @@
+
+> frontend@0.1.0 start /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend
+> react-scripts start
+
+(node:1816622) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:1816622) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled successfully!
+
+You can now view frontend in the browser.
+
+  Local:            http://localhost:3002
+  On Your Network:  http://172.22.138.187:3002
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/pages/AddPersonPage.jsx
+Syntax error: Unexpected token, expected "," (440:6) (440:6)
+ERROR in ./src/pages/AddPersonPage.jsx
+Module build failed (from ./node_modules/.pnpm/babel-loader@8.4.1_@babel+core@7.28.4_webpack@5.101.3/node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/src/pages/AddPersonPage.jsx: Unexpected token, expected "," (440:6)
+
+  438 |       </div>
+  439 |
+> 440 |       {/* Modal caméra */}
+      |       ^
+  441 |       {showCamera && (
+  442 |         <CameraCapture
+  443 |           onCapture={handleCameraCapture}
+    at constructor (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:367:19)
+    at FlowParserMixin.raise (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:6630:19)
+    at FlowParserMixin.unexpected (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:6650:16)
+    at FlowParserMixin.expect (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:6930:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11669:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3624:18)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11335:23)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:4797:20)
+    at FlowParserMixin.parseExprSubscripts (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11085:23)
+    at FlowParserMixin.parseUpdate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11070:21)
+    at FlowParserMixin.parseMaybeUnary (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11050:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10903:61)
+    at FlowParserMixin.parseExprOps (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10908:23)
+    at FlowParserMixin.parseMaybeConditional (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10835:21)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3582:18)
+    at FlowParserMixin.parseExpressionBase (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10788:23)
+    at /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10784:39
+    at FlowParserMixin.allowInAnd (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12431:16)
+    at FlowParserMixin.parseExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10784:17)
+    at FlowParserMixin.parseReturnStatement (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13151:28)
+    at FlowParserMixin.parseStatementContent (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12807:21)
+    at FlowParserMixin.parseStatementLike (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12776:17)
+    at FlowParserMixin.parseStatementLike (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:2949:24)
+    at FlowParserMixin.parseStatementListItem (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12756:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13325:61)
+    at FlowParserMixin.parseBlockBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13318:10)
+    at FlowParserMixin.parseBlock (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13306:10)
+    at FlowParserMixin.parseFunctionBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12110:24)
+    at /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:2923:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3099:16)
+    at FlowParserMixin.parseFunctionBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:2923:12)
+    at FlowParserMixin.parseArrowExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12085:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11695:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3624:18)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11335:23)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:4797:20)
+    at FlowParserMixin.parseExprSubscripts (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11085:23)
+    at FlowParserMixin.parseUpdate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11070:21)
+    at FlowParserMixin.parseMaybeUnary (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11050:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10903:61)
+    at FlowParserMixin.parseExprOps (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10908:23)
+    at FlowParserMixin.parseMaybeConditional (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10835:21)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3582:18)
+    at /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10804:39
+    at FlowParserMixin.allowInAnd (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12431:16)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10804:17)
+    at FlowParserMixin.parseVar (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13393:91)
+    at FlowParserMixin.parseVarStatement (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13239:10)
+
+ERROR in [eslint] 
+src/pages/AddPersonPage.jsx
+  Line 440:6:  Parsing error: Unexpected token, expected "," (440:6)
+
+webpack compiled with 2 errors
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/pages/AddPersonPage.jsx
+Syntax error: Unexpected token, expected "," (472:6) (472:6)
+ERROR in ./src/pages/AddPersonPage.jsx
+Module build failed (from ./node_modules/.pnpm/babel-loader@8.4.1_@babel+core@7.28.4_webpack@5.101.3/node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/src/pages/AddPersonPage.jsx: Unexpected token, expected "," (472:6)
+
+  470 |       </div>
+  471 |
+> 472 |       {/* Modal caméra */}
+      |       ^
+  473 |       {showCamera && (
+  474 |         <CameraCapture
+  475 |           onCapture={handleCameraCapture}
+    at constructor (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:367:19)
+    at FlowParserMixin.raise (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:6630:19)
+    at FlowParserMixin.unexpected (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:6650:16)
+    at FlowParserMixin.expect (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:6930:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11669:14)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3624:18)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11335:23)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:4797:20)
+    at FlowParserMixin.parseExprSubscripts (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11085:23)
+    at FlowParserMixin.parseUpdate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11070:21)
+    at FlowParserMixin.parseMaybeUnary (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11050:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10903:61)
+    at FlowParserMixin.parseExprOps (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10908:23)
+    at FlowParserMixin.parseMaybeConditional (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10835:21)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3582:18)
+    at FlowParserMixin.parseExpressionBase (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10788:23)
+    at /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10784:39
+    at FlowParserMixin.allowInAnd (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12431:16)
+    at FlowParserMixin.parseExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10784:17)
+    at FlowParserMixin.parseReturnStatement (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13151:28)
+    at FlowParserMixin.parseStatementContent (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12807:21)
+    at FlowParserMixin.parseStatementLike (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12776:17)
+    at FlowParserMixin.parseStatementLike (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:2949:24)
+    at FlowParserMixin.parseStatementListItem (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12756:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13325:61)
+    at FlowParserMixin.parseBlockBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13318:10)
+    at FlowParserMixin.parseBlock (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13306:10)
+    at FlowParserMixin.parseFunctionBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12110:24)
+    at /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:2923:63
+    at FlowParserMixin.forwardNoArrowParamsConversionAt (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3099:16)
+    at FlowParserMixin.parseFunctionBody (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:2923:12)
+    at FlowParserMixin.parseArrowExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12085:10)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11695:12)
+    at FlowParserMixin.parseParenAndDistinguishExpression (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3624:18)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11335:23)
+    at FlowParserMixin.parseExprAtom (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:4797:20)
+    at FlowParserMixin.parseExprSubscripts (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11085:23)
+    at FlowParserMixin.parseUpdate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11070:21)
+    at FlowParserMixin.parseMaybeUnary (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:11050:23)
+    at FlowParserMixin.parseMaybeUnaryOrPrivate (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10903:61)
+    at FlowParserMixin.parseExprOps (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10908:23)
+    at FlowParserMixin.parseMaybeConditional (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10885:23)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10835:21)
+    at FlowParserMixin.parseMaybeAssign (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:3582:18)
+    at /home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10804:39
+    at FlowParserMixin.allowInAnd (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:12431:16)
+    at FlowParserMixin.parseMaybeAssignAllowIn (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:10804:17)
+    at FlowParserMixin.parseVar (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13393:91)
+    at FlowParserMixin.parseVarStatement (/home/rosa/Perso/projetsRails/deeps-roller-maraude/frontend/node_modules/.pnpm/@babel+parser@7.28.4/node_modules/@babel/parser/lib/index.js:13239:10)
+
+ERROR in [eslint] 
+src/pages/AddPersonPage.jsx
+  Line 472:6:  Parsing error: Unexpected token, expected "," (472:6)
+
+webpack compiled with 2 errors
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Compiling...
+Compiled successfully!
+webpack compiled successfully
