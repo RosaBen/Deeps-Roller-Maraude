@@ -30,7 +30,7 @@ export const useGeolocation = () => {
         },
         (error) => {
           let errorMessage = 'Erreur inconnue lors de la géolocalisation.';
-          
+
           switch (error.code) {
             case error.PERMISSION_DENIED:
               errorMessage = 'L\'utilisateur a refusé la demande de géolocalisation.';
@@ -45,7 +45,7 @@ export const useGeolocation = () => {
               errorMessage = 'Erreur inconnue lors de la géolocalisation.';
               break;
           }
-          
+
           setError(errorMessage);
           setLoading(false);
           reject(new Error(errorMessage));

@@ -7,7 +7,7 @@ import {
   PlusCircleIcon,
 } from '@heroicons/react/24/outline';
 
-const Navigation: React.FC = () => {
+const Navigation = () => {
   const location = useLocation();
 
   const navItems = [

@@ -19,7 +19,6 @@ import {
 } from 'chart.js';
 import { Bar, Pie } from 'react-chartjs-2';
 import { personService } from '../services/api';
-import { Person } from '../types';
 
 ChartJS.register(
   CategoryScale,
@@ -31,11 +30,11 @@ ChartJS.register(
   ArcElement
 );
 
-const DashboardPage: React.FC = () => {
-  const [persons, setPersons] = useState<Person[]>([]);
+const DashboardPage = () => {
+  const [persons, setPersons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [editingPerson, setEditingPerson] = useState<Person | null>(null);
+  const [error, setError] = useState(null);
+  const [editingPerson, setEditingPerson] = useState(null);
 
   useEffect(() => {
     fetchPersons();
@@ -173,7 +172,7 @@ const DashboardPage: React.FC = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'top',
       },
     },
   };

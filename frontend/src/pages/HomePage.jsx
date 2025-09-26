@@ -8,12 +8,11 @@ import {
   ClockIcon,
 } from '@heroicons/react/24/outline';
 import { personService } from '../services/api';
-import { Person } from '../types';
 
-const HomePage: React.FC = () => {
-  const [persons, setPersons] = useState<Person[]>([]);
+const HomePage = () => {
+  const [persons, setPersons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchPersons();

@@ -1,11 +1,10 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import { Person } from '../types';
 import 'leaflet/dist/leaflet.css';
 
 // Configuration des icônes Leaflet
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
@@ -31,20 +30,13 @@ const visitedIcon = new L.Icon({
   popupAnchor: [1, -34],
 });
 
-interface InteractiveMapProps {
-  persons: Person[];
-  onMarkerClick?: (person: Person) => void;
-  center?: [number, number];
-  zoom?: number;
-}
-
-const InteractiveMap: React.FC<InteractiveMapProps> = ({
+const InteractiveMap = ({
   persons,
   onMarkerClick,
   center = [48.8566, 2.3522], // Paris par défaut
   zoom = 12,
 }) => {
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {
       day: '2-digit',
       month: '2-digit',
@@ -54,17 +46,17 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
     });
   };
 
-  const getGenderLabel = (gender: string) => {
+  const getGenderLabel = (gender) => {
     const labels = {
       'homme': 'Homme',
       'femme': 'Femme',
       'autre': 'Autre',
       'non-specifie': 'Non spécifié'
     };
-    return labels[gender as keyof typeof labels] || gender;
+    return labels[gender] || gender;
   };
 
-  const getAgeCategoryLabel = (ageCategory: string) => {
+  const getAgeCategoryLabel = (ageCategory) => {
     return ageCategory === 'adulte' ? 'Adulte' : 'Enfant';
   };
 

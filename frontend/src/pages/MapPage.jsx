@@ -8,14 +8,13 @@ import {
 } from '@heroicons/react/24/outline';
 import InteractiveMap from '../components/InteractiveMap';
 import { personService } from '../services/api';
-import { Person } from '../types';
 
-const MapPage: React.FC = () => {
-  const [persons, setPersons] = useState<Person[]>([]);
-  const [filteredPersons, setFilteredPersons] = useState<Person[]>([]);
+const MapPage = () => {
+  const [persons, setPersons] = useState([]);
+  const [filteredPersons, setFilteredPersons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
+  const [error, setError] = useState(null);
+  const [selectedPerson, setSelectedPerson] = useState(null);
   const [filters, setFilters] = useState({
     showVisited: true,
     showUnvisited: true,

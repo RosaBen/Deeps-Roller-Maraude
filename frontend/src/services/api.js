@@ -12,22 +12,22 @@ const api = axios.create({
 
 export const personService = {
   // Récupérer toutes les personnes
-  async getAllPersons() {
+  async getAllPersons () {
     const response = await api.get('/persons');
     return response.data.map(createPerson);
   },
 
   // Créer une nouvelle personne avec fichiers
-  async createPerson(personData) {
+  async createPerson (personData) {
     const formData = new FormData();
-    
+
     // Ajouter les données de base
     Object.keys(personData).forEach(key => {
       if (key !== 'photoFile' && key !== 'documentFile' && personData[key] !== null && personData[key] !== undefined) {
         formData.append(`person[${key}]`, personData[key]);
       }
     });
-    
+
     // Ajouter les fichiers s'ils existent
     if (personData.photoFile) {
       formData.append('person[photo]', personData.photoFile);
@@ -45,15 +45,15 @@ export const personService = {
   },
 
   // Mettre à jour une personne
-  async updatePerson(id, personData) {
+  async updatePerson (id, personData) {
     const formData = new FormData();
-    
+
     Object.keys(personData).forEach(key => {
       if (key !== 'photoFile' && key !== 'documentFile' && personData[key] !== null && personData[key] !== undefined) {
         formData.append(`person[${key}]`, personData[key]);
       }
     });
-    
+
     if (personData.photoFile) {
       formData.append('person[photo]', personData.photoFile);
     }
@@ -70,18 +70,18 @@ export const personService = {
   },
 
   // Supprimer une personne
-  async deletePerson(id) {
+  async deletePerson (id) {
     await api.delete(`/persons/${id}`);
   },
 
   // Récupérer une personne par ID
-  async getPersonById(id) {
+  async getPersonById (id) {
     const response = await api.get(`/persons/${id}`);
     return createPerson(response.data);
   },
 
   // Récupérer les statistiques du dashboard
-  async getDashboardStats() {
+  async getDashboardStats () {
     const response = await api.get('/dashboard/stats');
     return createDashboardStats(response.data);
   },

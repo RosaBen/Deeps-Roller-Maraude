@@ -62,5 +62,5 @@ export const createDashboardStats = (data = {}) => ({
 // Validation helpers
 export const isValidGender = (gender) => GENDERS.includes(gender);
 export const isValidAgeCategory = (ageCategory) => AGE_CATEGORIES.includes(ageCategory);
-export const isValidCoordinate = (lat, lng) => 
+export const isValidCoordinate = (lat, lng) =>
   !isNaN(lat) && !isNaN(lng) && lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
